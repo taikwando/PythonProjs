@@ -1,1 +1,20 @@
 Python Notes: Time to get real
+
+Introduction to Web Scraping (With Python and Beautiful Soup):
+    Steam Sales website
+        scrapes steam to find the best deals (check out)
+
+    can run python in the terminal
+        type python and then you can run from there
+
+    install beautiful soup (bs4)
+        bs4 is really good at parsing html text
+    
+    need a web client to actually grab something from the internet
+        in python use urllib
+            module inside called "request"
+                function inside called urlopen
+
+        "from urllib.request import urlopen as uReq"
+        "from bs4 import BeautifulSoup as soup"
+        
