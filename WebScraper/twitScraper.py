@@ -6,9 +6,9 @@ from bs4 import BeautifulSoup as soup
 # and then display the information using a data visualization tool (matplotlib / Seaborn).
 
 # NEEDS:
-# map out how to get to tweet information on twitter []
-# read up how twitter allows you to use its data (check for another way to accomplish same goal) []
-# pull tweet data from twitter []
+# map out how to get to tweet information on twitter [x]
+# read up how twitter allows you to use its data (check for another way to accomplish same goal) [x]
+# pull tweet data from twitter [x]
 # learn how data is used by matplotlib & Seaborn []
 # look into real time tracking to pull information from a certain feed over a short time interval []
 # look into storing data to an online database and pulling information from data base to show long term data set information []
@@ -53,7 +53,7 @@ for container in containers:
     for c in tweet_text:
         count += 1
 
-    f.write(count + "\n")
+    f.write(str(count) + "\n")
 
 # if not closed we cannot use
 f.close()
