@@ -10,6 +10,7 @@ from threading import Timer
 # map out how to get to tweet information on twitter [x]
 # read up how twitter allows you to use its data (check for another way to accomplish same goal) [x]
 # pull tweet data from twitter [x]
+# remove picture information from tweet because it adds to character count[]
 # learn how data is used by matplotlib & Seaborn []
 # look into real time tracking to pull information from a certain feed over a short time interval []
     # potentially could have the program run in the background and pull tweets every certain interval of time
@@ -32,8 +33,6 @@ f.write(headers)
 # URL for twitter (Accurate way to access? Check if I need to log in through an account to access information) Done?[x]
 twit_url = 'https://twitter.com/?lang=en'
 
-# open connection to twitter
-uClient = uReq(twit_url)
 
 # number of times we want the function to run
 loops = 5
@@ -41,6 +40,9 @@ loops = 5
 # once the script is called, this is the only part that we want to loop through multiple times
 # that way we do not repeatedly create the headers. Look into reading a file and continuing where it leaves off
 def scrapeLoop():
+
+    # open connection to twitter
+    uClient = uReq(twit_url)
 
     # offload content from page into a variable
         # check to be sure that the page will only read what is immediately loaded and will not refresh at bottom of page (initially) [x]
