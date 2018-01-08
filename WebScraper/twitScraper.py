@@ -72,5 +72,5 @@ f.close()
 
 # create a timer [x]
 # only run code once the timer hits certain time (test is 10 minutes, probably better to run it once every half hour)
-timer = Timer(600.0, scrapeLoop(5))
+timer = Timer(0.0, scrapeLoop(5))
 timer.start()
