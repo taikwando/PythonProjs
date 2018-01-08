@@ -35,9 +35,12 @@ twit_url = 'https://twitter.com/?lang=en'
 # open connection to twitter
 uClient = uReq(twit_url)
 
+# number of times we want the function to run
+loops = 5
+
 # once the script is called, this is the only part that we want to loop through multiple times
 # that way we do not repeatedly create the headers. Look into reading a file and continuing where it leaves off
-def scrapeLoop(loopsLeft):
+def scrapeLoop():
 
     # offload content from page into a variable
         # check to be sure that the page will only read what is immediately loaded and will not refresh at bottom of page (initially) [x]
@@ -63,14 +66,19 @@ def scrapeLoop(loopsLeft):
 
         f.write(str(count) + "\n")
 
+    global loops
+    loops = loops - 1
     # recursively call the timer. 
     # That way we can collect data for a certain number of intervals.
-    timer = Timer(600.0, scrapeLoop(loopsLeft - 1))
-    timer.start()
-# if not closed we cannot use
-f.close()
+    if loops >= 0:
+        timer = Timer(600.0, scrapeLoop)
+        timer.start()
+    else:
+        # if not closed we cannot use
+        f.close()
+
 
 # create a timer [x]
 # only run code once the timer hits certain time (test is 10 minutes, probably better to run it once every half hour)
-timer = Timer(0.0, scrapeLoop(5))
+timer = Timer(0.0, scrapeLoop)
 timer.start()
