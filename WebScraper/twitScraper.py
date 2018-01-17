@@ -10,7 +10,7 @@ from threading import Timer
 # map out how to get to tweet information on twitter [x]
 # read up how twitter allows you to use its data (check for another way to accomplish same goal) [x]
 # pull tweet data from twitter [x]
-# remove picture information from tweet because it adds to character count[]
+# remove picture information from tweet because it adds to character count[x]
 # learn how data is used by matplotlib & Seaborn []
 # look into real time tracking to pull information from a certain feed over a short time interval []
     # potentially could have the program run in the background and pull tweets every certain interval of time
@@ -35,7 +35,7 @@ twit_url = 'https://twitter.com/?lang=en'
 
 
 # number of times we want the function to run
-loops = 5
+loops = 1
 
 # once the script is called, this is the only part that we want to loop through multiple times
 # that way we do not repeatedly create the headers. Look into reading a file and continuing where it leaves off
@@ -62,17 +62,28 @@ def scrapeLoop():
         # returns the text within the tweet
         tweet_text = container.p.text
         # count each character in the extracted text
-        count = 0
-        for c in tweet_text:
-            count += 1
 
-        f.write(str(count) + "\n")
+        # remove the pic.twitter text
+        # start by finding the index of pic.twitter
+        pic_sub = "pic.twitter"
+        index = tweet_text.find(pic_sub)
+
+        if index > -1:
+            count = index
+            f.write(str(count) + "\n")
+
+        else:
+            count = 0
+            for c in tweet_text:
+                count += 1
+
+            f.write(str(count) + "\n")
 
     global loops
     loops = loops - 1
     # recursively call the timer. 
     # That way we can collect data for a certain number of intervals.
-    if loops >= 0:
+    if loops > 0:
         timer = Timer(600.0, scrapeLoop)
         timer.start()
     else:
